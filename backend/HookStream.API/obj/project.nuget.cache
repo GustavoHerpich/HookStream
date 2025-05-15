@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4ueneupSgUs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gusta\\OneDrive\\Área de Trabalho\\Projects_GitHub\\HookStream\\backend\\HookStream.API\\HookStream.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gusta\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
