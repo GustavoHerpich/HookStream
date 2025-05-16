@@ -1,3 +1,4 @@
+using System.Text.Json;
 using HookStream.API.Configurations;
 
 namespace HookStream.API.Installers;
@@ -10,6 +11,10 @@ public static class ServiceInstaller
 
         services.Configure<GitHubOptions>(configuration.GetSection("GitHub"));
 
-        services.AddControllers();
+        services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
     }
 }

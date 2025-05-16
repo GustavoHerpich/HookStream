@@ -31,3 +31,4 @@ C:\Users\gusta\OneDrive\Área de Trabalho\Projects_GitHub\HookStream\backend\Hoo
 C:\Users\gusta\OneDrive\Área de Trabalho\Projects_GitHub\HookStream\backend\HookStream.API\obj\Debug\net9.0\HookStream.API.pdb
 C:\Users\gusta\OneDrive\Área de Trabalho\Projects_GitHub\HookStream\backend\HookStream.API\obj\Debug\net9.0\HookStream.API.genruntimeconfig.cache
 C:\Users\gusta\OneDrive\Área de Trabalho\Projects_GitHub\HookStream\backend\HookStream.API\obj\Debug\net9.0\ref\HookStream.API.dll
+C:\Users\gusta\OneDrive\Área de Trabalho\Projects_GitHub\HookStream\backend\HookStream.API\obj\Debug\net9.0\HookStream.API.sourcelink.json

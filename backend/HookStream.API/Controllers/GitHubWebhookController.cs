@@ -5,15 +5,20 @@ using Microsoft.Extensions.Options;
 using HookStream.API.Configurations;
 using HookStream.API.Services.Impl;
 using HookStream.API.Logging;
+using HookStream.API.Utils;
+using System.Text.Json;
+using HookStream.API.Utils.SignatureValidator;
 
 namespace HookStream.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class GitHubWebhookController(
-    BroadcastService _broadcast,
+    IBroadcastService _broadcast,
     IOptions<GitHubOptions> _options,
-    ILogger<GitHubWebhookController> _logger) : ControllerBase
+    ILogger<GitHubWebhookController> _logger,
+    ISignatureValidator _signatureValidator,
+    GitHubPayloadParser _parser) : ControllerBase
 {
     private const string GITHUBSIGNATUREHEADER = "X-Hub-Signature-256";
     private readonly string webhookSecret = _options.Value.Secret;
@@ -27,7 +32,7 @@ public class GitHubWebhookController(
         using var reader = new StreamReader(Request.Body);
         var body = await reader.ReadToEndAsync();
 
-        if (!ValidateSignature(body, signatureHeader, webhookSecret))
+         if (!_signatureValidator.Validate(body, signatureHeader, webhookSecret))
         {
             _logger.InvalidSignature();
             return Unauthorized("Invalid signature");
@@ -35,8 +40,12 @@ public class GitHubWebhookController(
 
         try
         {
+            var dto = _parser.ParsePushEvent(body);
+
+            var messageToSend = JsonSerializer.Serialize(dto);
+
             _logger.PushReceived("GitHub", "https://github.com/GustavoHerpich/HookStream");
-            await _broadcast.BroadcastAsync(body);
+            await _broadcast.BroadcastAsync(messageToSend);
         }
         catch (Exception exception)
         {
@@ -45,15 +54,5 @@ public class GitHubWebhookController(
         }
 
         return Ok();
-    }
-
-    private static bool ValidateSignature(string body, string signatureHeader, string secret)
-    {
-        var key = Encoding.UTF8.GetBytes(secret);
-        using var hmac = new HMACSHA256(key);
-        var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(body));
-        var hashString = "sha256=" + Convert.ToHexString(hash).ToLowerInvariant();
-
-        return hashString == signatureHeader;
     }
 }

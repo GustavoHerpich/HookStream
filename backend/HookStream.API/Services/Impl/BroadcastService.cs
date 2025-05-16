@@ -3,7 +3,7 @@ using System.Net.WebSockets;
 using HookStream.API.WebSockets;
 
 namespace HookStream.API.Services.Impl;
-public class BroadcastService(WebSocketConnectionManager _manager)
+public class BroadcastService(WebSocketConnectionManager _manager) : IBroadcastService
 {
     public async Task BroadcastAsync(string message)
     {
