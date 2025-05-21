@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HookStream.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fea15c50c320499faec803bb24fe8d16a654782")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4073c171b6db62ba092594f8b388fee8350562df")]
 [assembly: System.Reflection.AssemblyProductAttribute("HookStream.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HookStream.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,7 +1,7 @@
 using System.Text.Json;
 using HookStream.API.Models;
 
-namespace HookStream.API.Utils;
+namespace HookStream.API.Utils.Converters;
 
 public class GitHubPayloadParser
 {

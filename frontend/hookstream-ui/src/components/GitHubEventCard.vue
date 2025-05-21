@@ -1,24 +1,26 @@
 <template>
-  <transition name="fade-slide" appear>
-    <div
-      class="bg-white border border-gray-200 shadow-md rounded-2xl p-6 hover:shadow-lg transition duration-300 ease-in-out"
-    >
-      <div class="flex items-center gap-2 text-blue-700 font-semibold text-lg mb-1">
-        <i class="i-lucide-git-branch w-5 h-5 text-blue-500" />
-        {{ event.RepositoryName }}
+  <v-card
+    class="event-card"
+    elevation="4"
+  >
+    <v-card-text class="card-text">
+      <div class="header">
+        <div class="repo-info">
+          <v-icon icon="mdi-git" class="git-icon" />
+          {{ event.RepositoryName }}
+        </div>
+        <span class="timestamp">{{ formattedDate }}</span>
       </div>
 
-      <div class="text-sm text-gray-600">
-        <strong>Por:</strong> {{ event.PusherName }}
+      <div class="pusher">
+        <strong class="label">Por:</strong> {{ event.PusherName }}
       </div>
 
-      <div class="mt-2 italic text-gray-700 text-sm">
+      <div class="commit-message">
         "{{ event.CommitMessage }}"
       </div>
-
-      <div class="text-xs text-gray-400 mt-4">{{ formattedDate }}</div>
-    </div>
-  </transition>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script setup lang="ts">
@@ -33,11 +35,65 @@ const formattedDate = computed(() =>
 </script>
 
 <style scoped>
-.fade-slide-enter-active {
-  transition: all 0.4s ease;
+.event-card {
+  background-color: rgba(255 255 255 / 0.1);
+  backdrop-filter: blur(18px);
+  border-radius: 1rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.25s ease-in-out;
+  cursor: default;
 }
-.fade-slide-enter-from {
-  opacity: 0;
-  transform: translateY(8px);
+
+.event-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 15px rgba(59, 130, 246, 0.4);
+}
+
+.card-text {
+  color: #f0f9ff; /* azul bem claro */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.repo-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #93c5fd; /* azul claro */
+}
+
+.git-icon {
+  color: #60a5fa;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #94a3b8; /* cinza azulado */
+}
+
+.pusher {
+  font-size: 0.875rem;
+  color: #bfdbfe; /* azul claro */
+  margin-bottom: 0.5rem;
+}
+
+.label {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.commit-message {
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #bfdbfe;
+  border-left: 4px solid rgba(59, 130, 246, 0.5);
+  padding-left: 0.75rem;
+  margin-top: 0.5rem;
 }
 </style>
