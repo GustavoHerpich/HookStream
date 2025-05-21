@@ -77,4 +77,5 @@ smee -u https://smee.io/seu-canal -t http://localhost:5000/api/webhook/github
 
 ### 5. Demostração Visual do Painel
 
-![image](https://github.com/user-attachments/assets/d73759b1-0335-4c50-aa61-a2927a5151f5)
+![image](https://github.com/user-attachments/assets/08ed0ca6-2ef1-4812-a51c-15e4e0d57269)
+
