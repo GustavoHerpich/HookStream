@@ -19,6 +19,17 @@
       <div class="commit-message">
         "{{ event.CommitMessage }}"
       </div>
+
+      <div class="commit-link-container">
+        <a
+          :href="event.CommitUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="commit-link"
+          >Link para o commit
+        </a>
+      </div>
+
     </v-card-text>
   </v-card>
 </template>
@@ -96,4 +107,29 @@ const formattedDate = computed(() =>
   padding-left: 0.75rem;
   margin-top: 0.5rem;
 }
+
+.commit-link-container {
+  margin-top: 1.5rem;
+}
+
+.commit-link {
+  display: block;
+  width: 32%;
+  padding: 0.5rem 1rem;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.25s ease;
+}
+
+.commit-link:hover {
+  background-color: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+}
+
 </style>

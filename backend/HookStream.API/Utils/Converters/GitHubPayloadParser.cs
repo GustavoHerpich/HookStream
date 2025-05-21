@@ -19,7 +19,9 @@ public class GitHubPayloadParser
             pusherName = pusherProp.GetProperty("name").GetString() ?? "";
 
         string commitMessage = "";
+        string commitUrl = "";
         DateTime timestamp = DateTime.UtcNow;
+
         if (root.TryGetProperty("commits", out var commitsProp))
         {
             var commits = commitsProp.EnumerateArray();
@@ -31,15 +33,17 @@ public class GitHubPayloadParser
             {
                 commitMessage = lastCommit.Value.GetProperty("message").GetString() ?? "";
                 timestamp = lastCommit.Value.GetProperty("timestamp").GetDateTime();
+                commitUrl = lastCommit.Value.GetProperty("url").GetString() ?? "";
             }
         }
-        
+
         return new GitHubPushEventDto
         {
             RepositoryName = repositoryName,
             PusherName = pusherName,
             CommitMessage = commitMessage,
-            Timestamp = timestamp
+            Timestamp = timestamp,
+            CommitUrl = commitUrl
         };
     }
 }

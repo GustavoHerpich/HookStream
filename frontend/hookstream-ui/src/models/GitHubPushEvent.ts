@@ -3,4 +3,5 @@ export interface GitHubPushEvent {
   PusherName: string;
   CommitMessage: string;
   Timestamp: string;
+  CommitUrl: string;
 }
